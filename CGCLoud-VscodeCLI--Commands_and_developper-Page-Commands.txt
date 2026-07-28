@@ -1,0 +1,85 @@
+#### VSCode Commands ***
+
+(1) To check & install salesfore-cli:
+
+
+npm install --global @salesforce/cli
+
+
+(2) Install VS Code Extensions - DONE 
+
+(3) Authenticate your org from local machine
+
+
+sf org login web --alias CG-Cloud-Org --instance-url https://india5.lightning.force.com
+
+
+sf org login web --alias CG-Cloud-Org --instance-url https://india5.lightning.force.com
+
+https://india5.my.salesforce-setup.com
+
+
+(4) Check Org is connected or not : 
+
+sf org list 
+
+(5) Create a project & do ls 
+
+sf project generate --name Salesforce-cgcloud
+
+(6) Retrieve metadata from the  org we have connected 
+
+sf project retrieve start --metadata CustomObject:cgcloud__Promotion__c --target-org CG-Cloud-Org
+
+(7) Now set your default org
+
+
+
+C:\Users\xsr89\OneDrive\Desktop\WCP-Salesforce-CGCloud1\Salesforce-cgcloud\scripts\apex\generate_sample_data_v2.apex
+
+
+C:\Users\xsr89\OneDrive\Desktop\WCP-Salesforce-CGCloud1\Salesforce-cgcloud\scripts\generate_sample_data_v2.apex
+
+
+(8) Check the previously created records: 
+
+sf data query --query "SELECT Id, Name FROM Account WHERE Industry = 'Retail'" --target-org CG-Cloud-Org
+
+
+
+#################QUERY-@DEVELOPPER PAGE #############
+
+(1) All your sample accounts - List
+
+SELECT Id, Name, BillingCity, Industry FROM Account WHERE Industry = 'Retail'
+
+
+(2) All Retail Stores with their linked Account
+
+SELECT Id, Name, AccountId, Account.Name, StoreType FROM RetailStore
+
+
+(3). Retail Stores for a specific customer
+
+SELECT Id, Name, StoreType FROM RetailStore WHERE Account.Name = 'SriLakshmi Supermarket'
+
+(4) All sample products
+
+SELECT Id, Name, ProductCode, Family, IsActive FROM Product2 WHERE Family = 'Consumer Goods'
+
+
+(5) Products with their price book entries
+
+SELECT Product2.Name, UnitPrice, IsActive FROM PricebookEntry WHERE Pricebook2.IsStandard = true
+
+
+(6) Store Products — which products are sold at which stores
+
+SELECT RetailStoreId, RetailStore.Name, ProductId, Product.Name, StartDate, EndDate FROM StoreProduct
+
+(7) Count of products per store
+
+SELECT RetailStore.Name, COUNT(Id) FROM StoreProduct GROUP BY RetailStore.Name
+
+
+
